@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel = 'stylesheet' href = './bootstrap/css/bootstrap.css'>
+        <script src = './jquery.js'></script>
+        <script src = './bootstrap/js/bootstrap.js'></script>
+        <link rel = 'stylesheet' href = 'sports.css'>
+    </head>
+    <title>Hala Madrid</title>
+    <br><center>
+    <h1>Real Madrid Weekly Team News</h1>    
+    <br></center>
+<div class = 'container'>
+<div class ='jumbotron'>
+</div>
+<center>
+<form class='form' method='POST' action='rm.html'>
+<div class='form-group'>
+<input type='text' id='firstname' class = 'form-control' placeholder = "First Name" ><br>
+<input type='text' id='lastname' class = 'form-control' placeholder = "Last Name"><br>
+<input type='email' id='email' class = 'form-control' placeholder = "Email"><br>
+</div>
+<input type='submit' name = 'submit' class = 'btn btn-primary' id = 'submit'>
+<br>
+<div id='err'></div>
+</form>
+<script>
+$(document).ready( function () {
+    // javascript + jquery
+    // ''==0  ''==false  ''==='' 0===0
+
+    $("#submit").click(function(e) {
+
+        var err='';
+        var $firstname = $('#firstname');
+        var $lastname = $('#lastname');
+        var $email = $('#email');
+
+        // .val() returns value  .val("new value") assigns value
+        if($firstname.val() === '') {
+            console.log('name is empty');
+            err+='<br><span class ="glyphicon glyphicon-alert"></span> Missing First Name';
+        }
+        if($lastname.val() === '') {
+            console.log('name is empty');
+            err+='<br><span class ="glyphicon glyphicon-alert"></span> Missing Last Name';
+        }
+        if($email.val() == '') {
+            console.log('email empty');
+            err+='<br><span class ="glyphicon glyphicon-alert"></span> Email empty';
+        }
+        if($email.val() == 'reserved@email.com') {
+            console.log('email already taken');
+            err+='<br><span class="glyphicon glyphicon-alert"></span> Email already taken';
+        }
+        //if error   5=='5' !=  5 !=='5'
+        if(err!=='') {
+            e.preventDefault();
+            console.log('missing elems');
+
+            // need to display error
+            $("#err").html(err);
+
+        }
+        else {
+            $(this).submit();
+        }
+
+    });// end of click
+
+
+});//end of ready
+</script>
+</html>
